@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="/css/svgStyles.css" rel="stylesheet">
+    <link href="/css/pageStyle.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<main class="d-flex">
+    <div class="d-flex ms-1 flex-column align-items-stretch flex-shrink-0 min-vh-100 divWidth">
+        <div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none mt-1 border bg-light">
+            <img class="bi pe-none me-2" id="navPict" src="/img/user.svg">
+            <span class="fs-5 fw-bold me-3">User Profile</span>
+            <a id="signOut" href="sign" class="btn btn-outline-dark btn-sm w-auto px-2 ms-auto">Sign out</a>
+        </div>
+        <div class="scrollarea">
+            <div class="mt-0 p-3 pt-1 bg-light rounded shadow-sm">
+                <div class="row mt-5">
+                    <div class="col text-center">
+                        <h3 class="mt-5 m-3 text-secondary fw-light"><?php echo $user["lastname"] . " "
+                                . $user["firstname"] . " "
+                                . $user["middlename"] ?></h3>
+                        <img class="m-4" id="avatar" src=<?php echo $user["photo"]?>>
+                        <div class="col-auto">
+                            <a id="btn" href="edit" class="btn btn-primary btn-lg  mt-3 w-25 px-5">Edit profile</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row mt-5">
+                            <h4 class="fw-light">Gender: <b
+                                        class="fw-bold"><?php echo $user["gender"] ? 'Male' : 'Female' ?></b></h4>
+                        </div>
+                        <div class="row mt-5">
+                            <h4 class="fw-light">Date of birthday: <b
+                                        class="fw-bold"><?php echo date('d.m.Y', strtotime($user["dob"])); ?></b></h4>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-auto">
+                                <h4 class="fw-light">Email(s):</h4>
+                            </div>
+                            <div class="col-auto">
+                                <?php foreach ($emails as $email) : ?>
+                                    <h4><b><?php echo $email["email"] ?></b></h4>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-5">
+                                <h4 class="fw-light">Phone number(s):</h4>
+                            </div>
+                            <?php foreach ($phones as $phone) : ?>
+                                <h4><b><?php echo $phone["telephone"] ?></b></h4>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-auto">
+                                <h4 class="fw-light">Skype:</h4>
+                            </div>
+                            <div class="col-1">
+                                <h4><b><?php echo $user["skype"] ?></b></h4>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-auto">
+                                <h4 class="fw-light">Admin:</h4>
+                            </div>
+                            <div class="col-1 me-4">
+                                <h4><b><?php echo $user["is_admin"] ? "Yes" : "No" ?></b></h4>
+                            </div>
+                            <div class="col-auto">
+                                <h4 class="fw-light">Active:</h4>
+                            </div>
+                            <div class="col-1">
+                                <h4><b><?php echo $user["is_online"] ? "Yes" : "No"?></b></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</main>
+</body>
+</html>
+
+

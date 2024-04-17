@@ -1,0 +1,61 @@
+.divWidth{
+  width: 90.2vw
+}
+
+.startPageMargin{
+  margin-top: 200px;
+}
+
+.invalid-tooltip{
+  left: 50%;
+}
+
+.notr{
+  color: #0b2e13;
+}
+
+#dropdownPost{
+  color: #FFFFFF;
+}
+
+.getter {
+  background: #c5e8ef;
+}
+
+.sender{
+  background:  #d3d6d8;
+}
+
+a{
+  text-decoration: none;
+}
+
+.photo {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.photo + label {
+  font-size: 1em;
+  font-weight: 500;
+  color: #449ccf;
+  background-color: transparent;
+  display: inline-block;
+  padding: 0.625rem;
+  width: auto;
+  border-radius: 0.300rem;
+  border: 1px solid #74bee8;
+}
+
+.photo:focus + label,
+.photo + label:hover {
+  color: white;
+  background-color: #66b8e8;
+}шб
+.photo + label {
+  cursor: pointer; /* "hand" cursor */
+}

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="/css/svgStyles.css" rel="stylesheet">
+    <link href="/css/pageStyle.css" rel="stylesheet">
+    <title>Users</title>
+</head>
+<body class="bg-light">
+<?php
+$search         = $form->get('searchLine');
+$submit         = $form->get('submit');
+$postSelect     = $form->get('dropdownPost');
+$date           = $form->get('date[]');
+
+
+$form->setAttribute('action', $this->url('users', ['action' => 'users']));
+$form->setAttribute('name', 'filterForm');
+$form->prepare();
+
+echo $this->formHidden($form->get('id'));
+?>
+<main class="d-flex">
+    <div class="d-flex flex-column align-items-stretch flex-shrink-0 min-vh-100">
+        <?php echo $this->form()->openTag($form); ?>
+        <div class="d-flex align-items-center flex-shrink-0 p-2 link-dark text-decoration-none" style="position: absolute;
+                                                                                                               top: 0;
+                                                                                                               left: 0;
+                                                                                                               width: 100%;
+                                                                                                               background-color: #f2f0f0;
+                                                                                                               opacity: 0.7;
+                                                                                                               box-shadow: 0 10px 10px rgba(0, 0, 0, .3);
+                                                                                                               ">
+            <img class="bi pe-none me-2" id="navPict" src="/img/users.svg">
+            <span class="fs-5 fw-bolder me-3">Users</span>
+            <div class="d-flex  w-100 justify-content-end">
+                <div class="w-100" role="search">
+                    <?php echo $this->formElement($search); ?>
+                </div>
+            </div>
+            <div class="ms-2">
+                <select class="form-select bg-light w-auto border-0" id="dropdownGender" name="dropdownGender" aria-label="Default select example">
+                    <option selected>Gender</option>
+                    <option value="1">Female</option>
+                    <option value="2">Male</option>
+                </select>
+            </div>
+
+            <div class="dropdown ms-2">
+                <select class="form-select bg-light w-auto border-0" id="dropdownAdmin" name="dropdownAdmin" aria-label="Default select example">
+                    <option selected>Admin</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="dropdown ms-2">
+                <select class="form-select bg-light w-auto border-0" id="dropdownActive" name="dropdownActive" aria-label="Default select example">
+                    <option selected>Active</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="input-group w-auto ms-2 align-self-center">
+                <?php echo $this->formElement($date) ?>
+            </div>
+            <h6 class="text-dark mx-2 mt-2">to</h6>
+            <div class="input-group w-auto align-self-center">
+                <?php echo $this->formElement($date) ?>
+            </div>
+            <?php echo $this->formButton($submit, 'Search'); ?>
+        </div>
+        <div class="scrollarea" style="margin-top: 35%;">
+            <div style="background-color: #f2f0f0; width: 300%; margin-left: 50%; border-radius: 4%;" id="result">
+                <?php foreach ($users as $user) : ?>
+                    <a href="<?php echo $this->url('profile', ['id' => $user['id']]) ?>"
+                       class="d-flex btn-outline-light text-dark border-bottom p-2 pt-3">
+                        <img class="rounded me-2 dialogPict" src=<?php echo $user["photo"] ?>>
+                        <p class="mb-0 mt-1">
+                            <strong class="d-block text-gray-dark"><?php echo $user["lastname"] . " "
+                                    . $user["firstname"] ?></strong>
+                        </p>
+                        <p class="ms-auto mb-0">
+                            <?php echo $user["is_online"] ? '<strong class="d-block text-success">Online</strong>' :
+                                '<strong class="d-block text-danger">Offline</strong>'; ?>
+                        </p>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+            <div class="d-flex justify-content-center p-3 mb-3" style="margin-left: 190%;" id="pagination">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link">Previous</a></li>
+                        <li class="page-item active"><a class="page-link">1</a></li>
+                        <li class="page-item"><a class="page-link">2</a></li>
+                        <li class="page-item"><a class="page-link">3</a></li>
+                        <li class="page-item"><a class="page-link">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <?php echo $this->form()->closeTag(); ?>
+        </div>
+    </div>
+</main>
+<script src="/js/jquery-3.5.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/script.js"></script>
+<script type="module" src="/js/usersFilter.js"></script>
+</body>
+

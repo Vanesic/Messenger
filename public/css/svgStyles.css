@@ -1,0 +1,32 @@
+svg {
+  width: 32px;
+  height: 32px;
+  fill: #0a53be;
+}
+
+.bar-pict{
+  width: 18px;
+  height: 18px;
+}
+
+.dialogPict{
+  width: 32px;
+  height: 32px;
+}
+
+.reductPict{
+  width: 22px;
+  height: 22px;
+}
+
+#navPict {
+  width: 30px;
+  height: 24px;
+}
+
+#avatar {
+  height: 350px;
+  width: 350px;
+  border-radius: 100%;
+}
+
